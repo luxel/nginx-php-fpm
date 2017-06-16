@@ -118,7 +118,8 @@ RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/let
 ADD src/ /var/www/html/
 ADD errors/ /var/www/errors/
 
-VOLUME /var/www/html
+# Don't defined the volume because we want to do composer install during our project image build.
+# VOLUME /var/www/html
 
 EXPOSE 443 80
 
