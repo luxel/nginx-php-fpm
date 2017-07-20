@@ -238,6 +238,15 @@ RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/let
 ADD src/ /var/www/html/
 ADD errors/ /var/www/errors
 
+# modify timezone
+RUN apk add tzdata \
+  && ls /usr/share/zoneinfo \
+  && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && echo "Asia/Shanghai" >  /etc/timezone \
+  && echo "date.timezone = Asia/Shanghai" >> ${php_vars} \
+  && date
+
+
 # VOLUME /var/www/html
 
 EXPOSE 443 80
