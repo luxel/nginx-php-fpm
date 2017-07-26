@@ -278,6 +278,8 @@ RUN \
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 
+# ssl certificate file
+ADD conf/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 # VOLUME /var/www/html
 
