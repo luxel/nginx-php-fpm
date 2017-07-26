@@ -246,6 +246,8 @@ RUN apk add tzdata \
   && echo "date.timezone = Asia/Shanghai" >> ${php_vars} \
   && date
 
+# ssl certificate file
+ADD conf/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 # VOLUME /var/www/html
 
