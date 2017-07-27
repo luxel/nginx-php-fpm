@@ -247,7 +247,8 @@ RUN apk add tzdata \
   && date
 
 # ssl certificate file
-ADD conf/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+ADD conf/cacert.pem /cacert.pem
+RUN echo "curl.cainfo=/cacert.pem" > ${php_vars}
 
 # VOLUME /var/www/html
 
