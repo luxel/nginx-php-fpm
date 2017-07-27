@@ -250,6 +250,9 @@ RUN apk add tzdata \
 ADD conf/cacert.pem /cacert.pem
 RUN echo "curl.cainfo=/cacert.pem" > ${php_vars}
 
+# ffmpeg
+RUN apk add --update ffmpeg
+
 # VOLUME /var/www/html
 
 EXPOSE 443 80
