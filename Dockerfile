@@ -248,6 +248,7 @@ RUN apk add tzdata \
 
 # ssl certificate file
 ADD conf/cacert.pem /cacert.pem
+ADD conf/cacert.pem /etc/ssl/cert.pem
 RUN echo "curl.cainfo=/cacert.pem" >> ${php_vars}
 
 # ffmpeg
