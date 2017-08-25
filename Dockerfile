@@ -4,6 +4,7 @@ MAINTAINER ngineered <support@ngineered.co.uk>
 
 ENV php_conf /etc/php5/php.ini
 ENV fpm_conf /etc/php5/php-fpm.conf
+ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
 ENV composer_hash 669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410
 
 RUN echo @testing http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
@@ -117,6 +118,19 @@ RUN chmod 755 /usr/bin/pull && chmod 755 /usr/bin/push && chmod 755 /usr/bin/let
 # copy in code
 ADD src/ /var/www/html/
 ADD errors/ /var/www/errors/
+
+# modify timezone
+RUN apk add tzdata \
+  && ls /usr/share/zoneinfo \
+  && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+  && echo "Asia/Shanghai" >  /etc/timezone \
+  && echo "date.timezone = Asia/Shanghai" >> ${php_vars} \
+  && date
+
+# ssl certificate file
+ADD conf/cacert.pem /cacert.pem
+ADD conf/cacert.pem /etc/ssl/cert.pem
+RUN echo "curl.cainfo=/cacert.pem" >> ${php_vars}
 
 # Don't defined the volume because we want to do composer install during our project image build.
 # VOLUME /var/www/html
