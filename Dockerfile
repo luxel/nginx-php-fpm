@@ -1,5 +1,5 @@
 # we cannot use mainline nginx image, is uses alpine 3.5 and it causes an openssl issue (wget https://www.baidu.com will receive SIGKILL), which we haven't found the root cause yet.
-FROM nginx:1.12.0-alpine
+FROM nginx:1.11.8-alpine
 
 MAINTAINER ngineered <support@ngineered.co.uk>
 
