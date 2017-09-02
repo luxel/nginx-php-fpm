@@ -161,7 +161,7 @@ RUN \
     && make -j $(getconf _NPROCESSORS_ONLN) \
     && make install
 
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+#RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 
 
