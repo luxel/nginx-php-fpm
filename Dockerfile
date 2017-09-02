@@ -148,13 +148,13 @@ ENV GPG_KEYS \
 ENV BUILD_PKGS="git curl make gcc g++ python linux-headers libgcc libstdc++ binutils-gold xz gnupg"
 RUN \
     apk --no-cache add ${BUILD_PKGS}  \
-    && for key in $GPG_KEYS; do \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
-    done \
+    # && for key in $GPG_KEYS; do \
+    # gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+    # done \
     && curl -SLO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.xz\
-    && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
-    && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
-    && grep " node-v$NODE_VERSION.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
+    # && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" \
+    # && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
+    # && grep " node-v$NODE_VERSION.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
     && tar -xJf "node-v$NODE_VERSION.tar.xz" \
     && cd /node-v${NODE_VERSION} \
     && ./configure --prefix=/usr --without-snapshot --fully-static \
