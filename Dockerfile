@@ -279,7 +279,12 @@ RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 
 # ssl certificate file
-ADD conf/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
+ADD conf/cacert.pem /cacert.pem
+ADD conf/cacert.pem /etc/ssl/cert.pem
+RUN echo "curl.cainfo=/cacert.pem" >> ${php_vars}
+
+# ffmpeg
+RUN apk add --update ffmpeg
 
 # VOLUME /var/www/html
 
