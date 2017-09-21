@@ -92,10 +92,10 @@ RUN sed -i \
     sed -i \
         -e "s/;daemonize\s*=\s*yes/daemonize = no/g" \
         -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" \
-        -e "s/pm.max_children = 4/pm.max_children = 4/g" \
-        -e "s/pm.start_servers = 2/pm.start_servers = 3/g" \
-        -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" \
-        -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" \
+        -e "s/pm.max_children = 4/pm.max_children = 100/g" \
+        -e "s/pm.start_servers = 2/pm.start_servers = 10/g" \
+        -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 10/g" \
+        -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 30/g" \
         -e "s/pm.max_requests = 500/pm.max_requests = 200/g" \
         -e "s/user = nobody/user = nginx/g" \
         -e "s/group = nobody/group = nginx/g" \
